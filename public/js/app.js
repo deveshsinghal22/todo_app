@@ -26,8 +26,7 @@ $(document).ready(function () {
 
 
     });
-
-    $('.pop').popover('show');
+    
 
     ko.applyBindings(new viewModel());
   
@@ -38,6 +37,7 @@ var sortViewModel = function (parent) {
     self.title = ko.observable('');
     self.status = ko.observable('');
     self.columns = [];
+    self.sortstr = ko.observable('');
      
     self.titleClick = function () {
       
@@ -47,6 +47,7 @@ var sortViewModel = function (parent) {
         self.columns.unshift({ title: self.title() });
         var sortBy = self.createSortParameter();
         parent.loadData(sortBy, null);
+        self.sortstr(JSON.stringify(sortBy));
        
     };
 
@@ -57,6 +58,7 @@ var sortViewModel = function (parent) {
         self.columns.unshift({ status: self.status() });
         var sortBy = self.createSortParameter();
         parent.loadData(sortBy, null);
+        self.sortstr(JSON.stringify(sortBy));
     };
   
     self.removeColumn = function (column) {
@@ -100,8 +102,9 @@ var viewModel = function () {
     
     self.searchByTitle = ko.observable(false);
     self.searchByStatus = ko.observable(false);
-    self.query = { };
-
+    self.query = {};
+    self.querystr = ko.observable('')
+ 
     self.searchByTitleClick = function () {
    
         self.titleSearchValue('');
@@ -111,15 +114,23 @@ var viewModel = function () {
 
     self.titleSearchValue = ko.observable('');
     self.titleSearchValue.subscribe(function (val) {
- 
-              
-          var q  = { 'title': { 'like': val }};
-          var o = self.query;
-          
-          self.query =   self.merge(o, q);
-          
-          self.loadData(null, self.query);
-      
+        if (val.length > 0) {
+
+            var q = { 'title': { 'like': val } };
+            var o = self.query;
+
+            self.query= self.merge(o, q);
+
+            self.loadData(null, self.query);
+
+          self.querystr(JSON.stringify(self.query));
+        }
+        else {
+
+            self.query = {};
+            self.gotoPage(1);
+
+        }
 
     });
 
@@ -157,14 +168,24 @@ var viewModel = function () {
 
     self.statusSearchValue = ko.observable('');
     self.statusSearchValue.subscribe(function (val) {
-             
+        
+        if (val.length > 0) {
             var q = { 'status': { 'like': val } };
-            
+
             var o = self.query;
 
-            self.query =   self.merge(o, q);
+            self.query = self.merge(o, q);
             self.loadData(null, self.query);
-      
+
+            self.querystr(JSON.stringify(self.query));
+        }
+        else {
+            self.query = {};
+            self.gotoPage(1);
+
+        }
+
+
     });
 
 

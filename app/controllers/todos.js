@@ -67,15 +67,15 @@ var Todos = function () {
       params.errors = todo.errors;
       self.transfer('add');
     }
-
-    todo.save(function(err, data) {
-      if (err) {
-        params.errors = err;
-        self.transfer('add');
-      } else {
-        self.redirect({controller: self.name});
-      }
-    });
+    self.redirect({ controller: self.name });
+    //todo.save(function(err, data) {
+    //  if (err) {
+    //    params.errors = err;
+    //    self.transfer('add');
+    //  } else {
+    //    self.redirect({controller: self.name});
+    //  }
+    //});
   };
 
   this.show = function (req, resp, params) {
@@ -115,29 +115,30 @@ var Todos = function () {
         params.errors = todo.errors;
         self.transfer('edit');
       }
-
-      todo.save(function(err, data) {
-        if (err) {
-          params.errors = err;
-          self.transfer('edit');
-        } else {
-          self.redirect({controller: self.name});
-        }
-      });
+      self.redirect({ controller: self.name });
+      //todo.save(function(err, data) {
+      //  if (err) {
+      //    params.errors = err;
+      //    self.transfer('edit');
+      //  } else {
+      //    self.redirect({controller: self.name});
+      //  }
+      //});
     });
   };
 
   this.destroy = function (req, resp, params) {
-    var self = this;
+      var self = this;
+      self.redirect({ controller: self.name });
 
-    geddy.model.Todo.remove(params.id, function(err) {
-      if (err) {
-        params.errors = err;
-        self.transfer('edit');
-      } else {
-        self.redirect({controller: self.name});
-      }
-    });
+    //geddy.model.Todo.remove(params.id, function(err) {
+    //  if (err) {
+    //    params.errors = err;
+    //    self.transfer('edit');
+    //  } else {
+    //    self.redirect({controller: self.name});
+    //  }
+    //});
  
  };
 

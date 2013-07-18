@@ -3,6 +3,10 @@ h3(data-bind='visible: loadData()') All Todos
 .pln
  table.table-hover.table.table-bordered.table-striped
   caption
+   span.pull-left Query :  
+    span(data-bind='text: querystr')
+   span.pull-right Sort:  
+    span(data-bind='text: sort.sortstr') 	
   thead
    tr: th id
        th
