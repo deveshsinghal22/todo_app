@@ -1,0 +1,32 @@
+[Wed, 10 Jul 2013 01:14:23 GMT] INFO Server starting with config: {
+  "environment": "development",
+  "workers": 1,
+  "port": 4000,
+  "spdy": null,
+  "ssl": null,
+  "debug": false,
+  "rotateWorkers": false,
+  "rotationWindow": 7200000,
+  "rotationTimeout": 300000,
+  "logDir": "C:\\Users\\hcalboru\\Desktop\\NodeJS\\todo_app\\public\\js\\log",
+  "gracefulShutdownTimeout": 30000,
+  "heartbeatInterval": 5000,
+  "heartbeatWindow": 20000,
+  "staticFilePath": "C:\\Users\\hcalboru\\Desktop\\NodeJS\\todo_app\\public\\js\\public",
+  "sessions": {
+    "store": "cookie",
+    "key": "sid",
+    "expiry": 1209600
+  },
+  "cookieSessionKey": "sdata",
+  "i18n": {
+    "defaultLocale": "en-us",
+    "loadPaths": [
+      "C:\\Users\\hcalboru\\Desktop\\NodeJS\\todo_app\\public\\js\\config\\locales"
+    ]
+  },
+  "hostname": null,
+  "fullHostname": null,
+  "connectCompatibility": false
+}
+[Wed, 10 Jul 2013 01:14:23 GMT] INFO Creating 1 worker process.

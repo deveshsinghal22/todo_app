@@ -1,0 +1,46 @@
+h3(data-bind='visible: loadData()') All Todos
+ != linkTo('Create a new Todo', addTodoPath, {class: 'btn btn-success pull-right'})
+.pln
+ table.table-hover.table.table-bordered.table-striped
+  caption
+  thead
+   tr: th id
+       th
+           div(data-bind='visible: !searchByTitle()')	   
+            a(data-bind='click: sort.titleClick') Title
+             i(data-bind="css:{'icon-arrow-up': sort.title() === 'asc' ,  'icon-arrow-down': sort.title() === 'desc'}")
+            i#titleSearch.icon-search.pull-right(data-bind='click: searchByTitleClick')
+           div.input-prepend.input-append(data-bind='visible: searchByTitle()')
+            span.add-on Title: 		    
+            input#txtTitle.span2(type='text', data-bind="value: titleSearchValue, valueUpdate: 'keyup', keyupBubble: false")
+            span.add-on(data-bind='click : searchByTitleClick'): i.icon-remove
+       th
+          div(data-bind='visible: !searchByStatus()')	   
+           a(data-bind='click: sort.statusClick') Status
+           i(data-bind="css:{'icon-arrow-up': sort.status() === 'asc',  'icon-arrow-down': sort.status() === 'desc'}")
+           i#statusSearch.icon-search.pull-right(data-bind='click: searchByStatusClick')	
+          div.input-prepend.input-append(data-bind='visible: searchByStatus()')
+            span.add-on Status: 		    
+            input#txtTitle.span2(type='text', data-bind="value: statusSearchValue, valueUpdate: 'keyup', keyupBubble: false")
+            span.add-on(data-bind='click : searchByStatusClick'): i.icon-remove		   
+       th Created
+       th Edit	  
+              tbody(data-bind='foreach:todos')
+                  tr: td(data-bind='text: id')
+                      td(data-bind='text: title')
+                      td(data-bind='text: status')
+                      td(data-bind='text: createdAt')
+                      td: a.btn.btn-primary(data-bind="attr: {href: '/todos/' + id + '/edit'}") Edit
+div.pagination
+ ul
+  li(data-bind="click: function(data, event) {gotoPage(1)}")
+   a(data-bind="attr: {href:'#'}")   
+    span «
+  <!-- ko foreach: totalPages -->
+  li(data-bind="click: function(data, event) { $parent.gotoPage($index() +1)}, css:{'disabled' : $index() + 1 === $parent.currentPage()}")
+   a(data-bind="attr: {href:'#'}") 
+    span(data-bind="text: $index() +1, css:{'badge badge-important' : $index() + 1 === $parent.currentPage()}")
+  <!-- /ko -->
+  li(data-bind="click: function(data, event) {gotoPage(totalPages().length)}")
+   a(data-bind="attr: {href:'#'}") 
+    span »

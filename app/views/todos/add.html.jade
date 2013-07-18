@@ -1,0 +1,14 @@
+.hero-unit
+  form#todo-form.form-horizontal(action="/todos", method="POST")
+    fieldset
+      legend Create a new Todo
+      if params.errors
+        .control-group
+          ul
+          for err in params.errors
+            li= err
+
+      != partial('form', {todo: {}})
+
+      .form-actions
+        != contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'})

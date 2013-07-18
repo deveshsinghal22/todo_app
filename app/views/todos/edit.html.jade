@@ -1,0 +1,15 @@
+.hero-unit
+  form#todo-form.form-horizontal(action="/todos/" + params.id + "?_method=PUT", method="POST")
+    fieldset
+      legend Update this Todo
+      if params.errors
+        .control-group
+          ul
+          for err in params.errors
+            li= err
+
+      != partial('form', {todo: todo})
+
+      .form-actions
+        != contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary'})
+        != contentTag('button', 'Remove', {type: 'submit', formaction: '/todos/' + params.id + '?_method=DELETE', formmethod: 'POST', class: 'btn btn-danger'})

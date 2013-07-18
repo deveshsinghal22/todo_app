@@ -1,0 +1,8 @@
+.control-group
+  label(for="title", class="control-label") title
+  .controls
+    != contentTag('input', todo.title, {type:'text', class:'span6', name:'title'})
+.control-group
+  label(for="status", class="control-label") status
+  .controls
+    != contentTag('input', todo.status, {type:'text', class:'span6', name:'status'})

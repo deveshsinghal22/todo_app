@@ -1,0 +1,25 @@
+h2 All Todos
+//span(data-bind="text: abc")
+ != linkTo('Create a new Todo', addTodoPath, {class: 'btn pull-right'})
+.pln
+ table.table-hover.table.table-bordered.table-striped
+  thead
+   tr: th id
+       th
+           a(data-bind='click: sort.titleClick') Title
+           i(data-bind="css:{'icon-arrow-up': sort.title() === 'asc',  'icon-arrow-down': sort.title() === 'desc'}")
+           i.icon-search.pull-right	   
+       th
+           a(data-bind='click: sort.statusClick') Status
+           i(data-bind="css:{'icon-arrow-up': sort.status() === 'asc',  'icon-arrow-down': sort.status() === 'desc'}")
+           i.icon-search.pull-right	 
+       th Created
+       th Edit	  
+              tbody
+                 each todo in todos
+                  tr: td!= todo.id
+                      td!= todo.title 
+                      td!= todo.status
+                      td!= todo.createdAt 
+                      td!= linkTo('Edit', todoPath(todo.id), {class: 'btn btn-primary'})
+
