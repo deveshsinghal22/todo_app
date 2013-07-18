@@ -15,7 +15,7 @@
  * limitations under the License.
  *
 */
-//mongodb://<user>:<password>@dharma.mongohq.com:10052/app16991158
+//mongo dharma.mongohq.com:10052/app16994491 -u <user> -p<password>
 var config = {
   detailedErrors: true
 , hostname: null
@@ -27,7 +27,7 @@ var config = {
 , db: {
     mongo: {
       username: 'hayri'
-    , dbname: 'app16991158'
+    , dbname: 'app16994491'
     , prefix: null
     , password: 'hayri'
     , host: 'dharma.mongohq.com'

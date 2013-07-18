@@ -19,7 +19,7 @@
 
 var router = new geddy.RegExpRouter();
 
-router.get('/').to('Main.index');
+router.get('/').to('Todos.index');
 router.match('/todos(.:format)', 'GET').to('Todos.index');
 router.match('/todos/dummy(.:format)', 'GET').to('Todos.dummy');
 router.match('/todos/dummy(.:format)', 'POST').to('Todos.dummy');
